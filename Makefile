@@ -1,6 +1,6 @@
 REGISTRY       ?= quay.io
 ORG            ?= openshift-psap
-TAG            ?= $(shell git branch | grep \* | cut -d ' ' -f2)
+TAG            ?= 4.2.0
 IMAGE          ?= ${REGISTRY}/${ORG}/cluster-nfd-operator:${TAG}
 NAMESPACE      ?= openshift-nfd
 PULLPOLICY     ?= IfNotPresent
