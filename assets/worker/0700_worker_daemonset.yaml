@@ -13,8 +13,16 @@ spec:
       labels:
         app: nfd-worker
     spec:
-      nodeSelector:
-        node-role.kubernetes.io/worker: ""
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key:  node-role.kubernetes.io/worker
+                operator: Exists
+            - matchExpressions:
+              - key:  node-role.kubernetes.io/infra
+                operator: Exists
       tolerations:
       - operator: Exists
       - key: nvidia.com/gpu

@@ -1,9 +1,9 @@
 REGISTRY       ?= quay.io
-ORG            ?= zvonkok
-TAG            ?= $(shell git branch | grep \* | cut -d ' ' -f2)
+ORG            ?= eduardoarango
+TAG            ?= infra
 IMAGE          ?= ${REGISTRY}/${ORG}/cluster-nfd-operator:${TAG}
 NAMESPACE      ?= openshift-nfd
-PULLPOLICY     ?= IfNotPresent
+PULLPOLICY     ?= Always
 TEMPLATE_CMD    = sed 's+REPLACE_IMAGE+${IMAGE}+g; s+REPLACE_NAMESPACE+${NAMESPACE}+g; s+IfNotPresent+${PULLPOLICY}+'
 
 DEPLOY_OBJECTS  = manifests/0100_namespace.yaml manifests/0200_service_account.yaml manifests/0300_cluster_role.yaml manifests/0400_cluster_role_binding.yaml manifests/0600_operator.yaml
